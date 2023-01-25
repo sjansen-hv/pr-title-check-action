@@ -1,0 +1,13 @@
+name: PR Title
+on:
+  pull_request:
+    types: [edited, opened, reopened, synchronize]
+
+jobs:
+
+  check-title:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Check PR Title
+      run: ./check-pr-title --debug --github-token '${{ secrets.GITHUB_TOKEN }}'
