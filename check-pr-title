@@ -21,7 +21,7 @@ def main():
 
     if args.debug:
         if args.github_token:
-            print(f"GITHUB_TOKEN='{args.github_token}'")
+            print(f"GITHUB_TOKEN='{args.github_token[0]}'")
         print("--")
         keys = sorted(os.environ.keys())
         for k in keys:
