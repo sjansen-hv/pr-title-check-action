@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Check PR Title
-      run: ./check-pr-title
+      run: ./check-pr-title '${{ secrets.GITHUB_TOKEN }}'

@@ -2,6 +2,12 @@
 # hvformat=true
 
 import os
+import sys
+
+for arg in sys.argv:
+    print(arg)
+
+print('--')
 
 keys = sorted(os.environ.keys())
 for k in keys:
