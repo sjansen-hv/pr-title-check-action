@@ -1,0 +1,4 @@
+prepare-commit-msg:
+  commands:
+    add-shortcut-url:
+      run: 'bin/git-hooks/prepare-commit-msg {0}'

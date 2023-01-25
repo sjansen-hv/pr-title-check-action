@@ -1,0 +1,7 @@
+.idea/
+.vscode/
+
+*.bak
+*.py[co]
+.*.sw*
+.DS_Store
