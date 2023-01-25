@@ -15,13 +15,16 @@ def main():
     )
     parser.add_argument(
         "--github-token",
-        nargs=1,
+        nargs='?',
     )
     args = parser.parse_args()
 
-    if args.debug:
-        if args.github_token:
-            print(f"GITHUB_TOKEN='{args.github_token[0]}'")
+    debug = args.debug or os.environ.get('INPUT_DEBUG', 'false') != 'false'
+    github_token = args.github_token or os.environ.get('INPUT_GITHUB_TOKEN')
+
+    if debug:
+        if github_token:
+            print(f"GITHUB_TOKEN='{github_token}'")
         print("--")
         keys = sorted(os.environ.keys())
         for k in keys:
