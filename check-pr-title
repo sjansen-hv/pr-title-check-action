@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+# hvformat=true
+
+import os
+
+for k, v in os.environ.items():
+    print(k, v)

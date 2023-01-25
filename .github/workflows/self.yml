@@ -1,0 +1,11 @@
+name: PR Title
+on: [pull_request]
+
+jobs:
+
+  check-title:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Check PR Title
+      run: ./check-pr-title

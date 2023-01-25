@@ -1,0 +1,5 @@
+name: 'check-pr-title'
+description: 'Enforce pull request title conventions'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
