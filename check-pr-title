@@ -1,14 +1,32 @@
 #!/usr/bin/env python3
 # hvformat=true
 
+import argparse
 import os
 import sys
 
-for arg in sys.argv:
-    print(arg)
 
-print('--')
+def main():
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--help", action="help")
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--github-token",
+        nargs=1,
+    )
+    args = parser.parse_args()
 
-keys = sorted(os.environ.keys())
-for k in keys:
-    print(k, os.environ[k])
+    if args.debug:
+        keys = sorted(os.environ.keys())
+        for k in keys:
+            print(f"{k}={repr(os.environ[k])}")
+
+    if args.github_token:
+        token = args.github_token[0]
+        print(f"GITHUB_TOKEN={token}")
+
+if __name__ == "__main__":
+    main()
