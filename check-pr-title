@@ -4,8 +4,15 @@
 import argparse
 import json
 import os
+import re
 import sys
 import urllib.request
+
+
+ERROR = 'PR titles should start with a Shortcut Story ID, e.g. SC-513214'
+REGEX = re.compile(r'^(SC|sc)-[0-9]+')
+MAX_LEN = 100
+MIN_LEN = 9
 
 
 # NOTE:
@@ -30,12 +37,23 @@ def main():
 
     print("Checking PR title:", repr(title))
 
+    if not REGEX.match(title):
+        print(ERROR)
+        sys.exit(1)
+    if len(title) < MIN_LEN:
+        print('Please pick a longer PR title.')
+        sys.exit(1)
+    if len(title) > MAX_LEN:
+        print('Please pick a shorter PR title.')
+        sys.exit(1)
+
 
 # IMPORTANT:
 #   The event data file isn't updated when the PR title is edited,
 #   so we have to use the REST API to get the title.
 def get_pr_title(github_token):
     github_context = parse_github_context()
+    # https://docs.github.com/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#pull_request
     url = github_context["pull_request"]["_links"]["self"]["href"]
     print("Getting PR title from:", url)
 
