@@ -8,6 +8,9 @@ import sys
 import urllib.request
 
 
+# NOTE:
+#   This would make more sense as a JavaScript action, but it was useful
+#   to use is as a test case for writing custom Python actions.
 def main():
     args = parse_args()
     debug = args.debug or os.environ.get('INPUT_DEBUG', 'false') != 'false'
@@ -25,7 +28,7 @@ def main():
             return
         title = get_pr_title(github_token)
 
-    print("Checking PR Title:", repr(title))
+    print("Checking PR title:", repr(title))
 
 
 # IMPORTANT:
